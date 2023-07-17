@@ -117,8 +117,8 @@ class _HomePageState extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               AlarmItem(bookname: "ICT 융합 기술", isSelling: false),
-              AlarmItem(bookname: "과학 기술, 미래 국방과 만...", isSelling: false),
-              AlarmItem(bookname: "그림으로 이해하는 네트워크", isSelling: false),
+              AlarmItem(bookname: "과학 기술, 미래 국방과 만...", isSelling: true),
+              AlarmItem(bookname: "그림으로 이해하는 네트워크", isSelling: true),
             ],
           ),
         );

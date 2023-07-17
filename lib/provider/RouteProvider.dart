@@ -9,4 +9,13 @@ class RouteProvider extends ChangeNotifier {
     _currentIndex = index;
     notifyListeners();
   }
+
+  int _userPoint = 400;
+
+  int get userPoint => _userPoint;
+
+  void increasePoint(int value) {
+    _userPoint += value;
+    notifyListeners();
+  }
 }

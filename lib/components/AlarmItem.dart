@@ -39,7 +39,7 @@ class _AlarmItemState extends State<AlarmItem> {
                   fit: BoxFit.fitHeight,
                 ),
                 Expanded(
-                    child: widget.isSelling
+                    child: !widget.isSelling
                         ? RichText(
                             textAlign: TextAlign.center,
                             text: TextSpan(
@@ -93,15 +93,15 @@ class _AlarmItemState extends State<AlarmItem> {
                 GestureDetector(
                   onTap: () {
                     if (widget.isSelling) {
-                      _showBookGetDialog(context, widget.bookname);
                       setState(() {
                         isVisiable = false;
                       });
+                      _showGetSellingDialog(context, widget.bookname, 12000, 3000);
                     } else {
-                      _showBookGetDialog(context, widget.bookname);
                       setState(() {
                         isVisiable = false;
                       });
+                      _showBookGetDialog(context, widget.bookname);
                     }
                   },
                   child: const Image(
@@ -134,7 +134,7 @@ class _AlarmItemState extends State<AlarmItem> {
                     style: DefaultTextStyle.of(context).style, // 기본 텍스트 스타일
                     children: <TextSpan>[
                       TextSpan(
-                        text: widget.bookname,
+                        text: bookname,
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.deepPurpleAccent, // 원하는 색상 지정
@@ -158,13 +158,185 @@ class _AlarmItemState extends State<AlarmItem> {
                     style: ElevatedButton.styleFrom(primary: const Color(0xFF63E6BE)),
                     onPressed: () {
                       Navigator.of(context).pop();
-
+                      _showPromoteDialog(context, 1200);
                     },
                     child: const Text('알겠어요.', style: TextStyle(color: Colors.white)),
                   ),
                 ))
           ],
         ));
+      },
+    );
+  }
+
+  _showPromoteDialog(BuildContext context, int point) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                RichText(
+                  textAlign: TextAlign.center,
+                  text: TextSpan(
+                    style: DefaultTextStyle.of(context).style, // 기본 텍스트 스타일
+                    children: const <TextSpan>[
+                      TextSpan(
+                        text: "종이책 사용 절감으로\n 환경에 기여하신",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      TextSpan(
+                        text: '호성님',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.deepPurpleAccent, // 원하는 색상 지정
+                        ),
+                      ),
+                      TextSpan(
+                        text: "께\n 드리는 포인트에요!",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                // 포인트 텍스트
+                Container(
+                  margin: const EdgeInsets.only(top: 16.0, bottom: 16.0),
+                  child: Text("${point}P", style: const TextStyle(fontSize: 35, color: Colors.red, fontWeight: FontWeight.bold),)
+                ),
+
+                const Divider(
+                  height: 20,
+                  color: Colors.grey,
+                ),
+                
+                // 승급 이미지
+                Image.asset("alarm/promote.png"),
+
+                // 알겠어요 버튼
+                Container(
+                    margin: const EdgeInsets.only(top: 18.0),
+                    child: Center(
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(primary: const Color(0xFF63E6BE)),
+                        onPressed: () {
+                          final routeProvider = Provider.of<RouteProvider>(context, listen: false);
+                          routeProvider.increasePoint(point);
+
+                          Navigator.of(context).pop();
+                        },
+                        child: const Text('알겠어요.', style: TextStyle(color: Colors.white)),
+                      ),
+                    ))
+              ],
+            ));
+      },
+    );
+  }
+
+  _showGetSellingDialog(BuildContext context, String bookname, int point, int recellPoint) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                RichText(
+                  textAlign: TextAlign.center,
+                  text: TextSpan(
+                    style: DefaultTextStyle.of(context).style, // 기본 텍스트 스타일
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: bookname,
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.deepPurpleAccent,
+                        ),
+                      ),
+                      TextSpan(
+                        text: '\n판매로 얻은 포인트에요',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                // 포인트 텍스트
+                Container(
+                    margin: const EdgeInsets.only(top: 16.0, bottom: 16.0),
+                    child: Text("${point}P", style: const TextStyle(fontSize: 35, color: Colors.red, fontWeight: FontWeight.bold),)
+                ),
+
+                const Divider(
+                  height: 20,
+                  color: Colors.grey,
+                ),
+
+                RichText(
+                  textAlign: TextAlign.center,
+                  text: TextSpan(
+                    style: DefaultTextStyle.of(context).style, // 기본 텍스트 스타일
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: "이 거래로",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      TextSpan(
+                        text: '${recellPoint}원',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.deepPurpleAccent, // 원하는 색상 지정
+                        ),
+                      ),
+                      TextSpan(
+                        text: "의 금액이\n 저작권자에게 돌아갔어요!",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                // 승급 이미지
+                // Image.asset("alarm/promote.png"),
+
+                // 알겠어요 버튼
+                Container(
+                    margin: const EdgeInsets.only(top: 18.0),
+                    child: Center(
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(primary: const Color(0xFF63E6BE)),
+                        onPressed: () {
+                          final routeProvider = Provider.of<RouteProvider>(context, listen: false);
+                          routeProvider.increasePoint(point);
+
+                          Navigator.of(context).pop();
+                        },
+                        child: const Text('알겠어요.', style: TextStyle(color: Colors.white)),
+                      ),
+                    ))
+              ],
+            ));
       },
     );
   }
