@@ -20,9 +20,9 @@ class MyApp extends StatelessWidget {
       background: Color(0xFFFAFBFB),      // background
       error: Color(0xFFF64949),           // Error
       onPrimary: Color(0xFF212529),       // N7
-      onSecondary: Color(0xFF868E96),     // N6
-      onSurface: Color(0xFFCED4DA),       // N4
-      onBackground: Color(0xFFE9ECEF),    // N3
+      onSecondary: Color(0xFF212529),     // N6
+      onSurface: Color(0xFF212529),       // N4
+      onBackground: Color(0xFF212529),    // N3
       onError: Color(0xFFFFFFFF),         // WHITE
       outline: Color(0xFF7B61FF),         // highlight
       brightness: Brightness.light, // 밝은 테마
@@ -40,6 +40,7 @@ class MyApp extends StatelessWidget {
           bodyText1: TextStyle(fontSize: 16),
           bodyText2: TextStyle(fontSize: 14),
         ),
+        colorScheme: myCustomColorScheme,
         useMaterial3: true,
       ),
       home: const MainPage(),
