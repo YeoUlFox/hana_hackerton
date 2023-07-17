@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'pages/MainPage.dart';
+import 'package:hana_hackerton/pages/HomePage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +15,7 @@ class MyApp extends StatelessWidget {
       primaryVariant: Color(0xFF186D63),  // M5
       secondary: Color(0xFF0CA678),       // M4
       secondaryVariant: Color(0xFF63E6BE),// M2
-      surface: Color(0xFFC3FAE8),         // M1
+      surface: Color(0xFFFAFBFB),         // M1
       background: Color(0xFFFAFBFB),      // background
       error: Color(0xFFF64949),           // Error
       onPrimary: Color(0xFF212529),       // N7
@@ -43,7 +42,7 @@ class MyApp extends StatelessWidget {
         colorScheme: myCustomColorScheme,
         useMaterial3: true,
       ),
-      home: const MainPage(),
+      home: const HomePage(),
     );
   }
 }
