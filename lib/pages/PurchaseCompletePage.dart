@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hana_hackerton/pages/HomePage.dart';
+import 'package:hana_hackerton/provider/RouteProvider.dart';
+import 'package:provider/provider.dart';
 
 class PurchaseCompletePage extends StatefulWidget {
   const PurchaseCompletePage({Key? key}) : super(key: key);
@@ -9,8 +10,12 @@ class PurchaseCompletePage extends StatefulWidget {
 }
 
 class _PurchaseCompletePageState extends State<PurchaseCompletePage> {
+  late RouteProvider _routeProvider;
+
   @override
   Widget build(BuildContext context) {
+    _routeProvider = Provider.of<RouteProvider>(context);
+
     return Scaffold(
       backgroundColor: const Color(0xffF9F9FB),
       body: CustomScrollView(
@@ -52,12 +57,8 @@ class _PurchaseCompletePageState extends State<PurchaseCompletePage> {
                       backgroundColor: Color(0xffDD5F88),
                     ),
                     onPressed: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => HomePage(),
-                        ),
-                      );
+                      // go to main page
+                      _routeProvider.setIndex(1);
                     },
                     child: Text(
                       '메인 페이지',

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hana_hackerton/provider/RouteProvider.dart';
+import 'package:provider/provider.dart';
 
 class CategoryButton extends StatelessWidget {
   final String name;
@@ -7,12 +9,15 @@ class CategoryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final routeProvider = Provider.of<RouteProvider>(context);
+
     return Container(
       margin: const EdgeInsets.all(8.0),
       child: Column(children: [
         GestureDetector(
           onTap: () {
-            // TODO : Click event
+            // go to purchase
+            routeProvider.setIndex(0);
           },
           child: Container(
             width: 70,

@@ -1,6 +1,6 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:hana_hackerton/provider/RouteProvider.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -10,8 +10,12 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
+  late RouteProvider _routeProvider;
+
   @override
   Widget build(BuildContext context) {
+    _routeProvider = Provider.of<RouteProvider>(context);
+
     return Scaffold(
       backgroundColor: const Color(0xffF9F9FB),
       body: CustomScrollView(
@@ -56,9 +60,15 @@ class _SearchPageState extends State<SearchPage> {
           SliverList(
             delegate: SliverChildListDelegate(
               [
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: 8),
-                  child: Image.asset('/books.png'),
+                GestureDetector(
+                  onTap: () {
+                    // go to purchase
+                    _routeProvider.setIndex(2);
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 8),
+                    child: Image.asset('/books.png'),
+                  ),
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 8),

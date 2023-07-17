@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hana_hackerton/pages/PurchaseCompletePage.dart';
+import 'package:hana_hackerton/provider/RouteProvider.dart';
+import 'package:provider/provider.dart';
 
 class PurchasePage extends StatefulWidget {
   const PurchasePage({Key? key}) : super(key: key);
@@ -9,9 +10,12 @@ class PurchasePage extends StatefulWidget {
 }
 
 class _PurchasePageState extends State<PurchasePage> {
+  late RouteProvider _routeProvider;
 
   @override
   Widget build(BuildContext context) {
+    _routeProvider = Provider.of<RouteProvider>(context);
+
     return Scaffold(
       backgroundColor: const Color(0xffF9F9FB),
       body: CustomScrollView(
@@ -23,7 +27,7 @@ class _PurchasePageState extends State<PurchasePage> {
             leading: IconButton(
               icon: Icon(Icons.arrow_back_ios),
               onPressed: () {
-                Navigator.of(context).pop();
+                _routeProvider.setIndex(1);
               },
             ),
             flexibleSpace: Container(
@@ -59,12 +63,9 @@ class _PurchasePageState extends State<PurchasePage> {
                       backgroundColor: Color(0xff0CA678),
                     ),
                     onPressed: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => PurchaseCompletePage(),
-                        ),
-                      );
+                      // go to purchase complete page
+                      print("asdf");
+                      _routeProvider.setIndex(3);
                     },
                     child: Text(
                       '거래가 가능해요!',
@@ -87,12 +88,8 @@ class _PurchasePageState extends State<PurchasePage> {
                       backgroundColor: Color(0xffDD5F88),
                     ),
                     onPressed: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => PurchaseCompletePage(),
-                        ),
-                      );
+                      // go to purchase complete page
+                      _routeProvider.setIndex(3);
                     },
                     child: Text(
                       '새책 구매하기',
@@ -112,4 +109,3 @@ class _PurchasePageState extends State<PurchasePage> {
     );
   }
 }
-
