@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hana_hackerton/components/Book.dart';
+import 'package:hana_hackerton/components/CategoryButton.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -24,12 +25,15 @@ class _MainPageState extends State<MainPage> {
       margin: const EdgeInsets.all(20.0),
       child: Column(
         children: [
+          // 로고 이미지
           Center(
             child: Image.asset(
               "/logo.png",
               fit: BoxFit.cover,
             ), // TODO : 크기 조정 (?)
           ),
+
+          // 포인트 및 아이디 표시 헤더
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 16.0),
             child: const Row(
@@ -94,6 +98,30 @@ class _MainPageState extends State<MainPage> {
                                 bookPath: "/books/book2.png", price: "30,000원"),
                           ],
                         )),
+            ),
+          ),
+
+          //
+          Container(
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    CategoryButton(name: '철학'),
+                    CategoryButton(name: '종교'),
+                    CategoryButton(name: '사회'),
+                    CategoryButton(name: '기술')
+                  ],
+                ),
+                Row(
+                  children: [
+                    CategoryButton(name: '예술'),
+                    CategoryButton(name: '언어'),
+                    CategoryButton(name: '문학'),
+                    CategoryButton(name: '사회')
+                  ],
+                ),
+              ],
             ),
           )
         ],
