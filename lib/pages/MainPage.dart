@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hana_hackerton/provider/RouteProvider.dart';
+import 'package:provider/provider.dart';
 import 'package:hana_hackerton/components/Book.dart';
 import 'package:hana_hackerton/components/CategoryButton.dart';
 
@@ -12,6 +14,8 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   bool isLoading = false;
 
+  late RouteProvider _routeProvider;
+
   void loadingBooks() {
     setState(() {
       isLoading = true;
@@ -20,6 +24,8 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
+    _routeProvider = Provider.of<RouteProvider>(context);
+
     return Scaffold(
         body: Container(
       margin: const EdgeInsets.all(20.0),
@@ -53,7 +59,12 @@ class _MainPageState extends State<MainPage> {
           ),
 
           // 캠페인 그림
-          Image.asset("/donation_campaign.png"),
+          GestureDetector(
+            onTap: () {
+              _routeProvider.setIndex(10);
+            },
+            child: Image.asset("/donation_campaign.png"),
+          ),
 
           // 판매 중인 책
           Container(

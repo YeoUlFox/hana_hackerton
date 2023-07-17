@@ -63,7 +63,7 @@ class _SearchPageState extends State<SearchPage> {
                 GestureDetector(
                   onTap: () {
                     // go to purchase
-                    _routeProvider.setIndex(2);
+                    _routeProvider.setIndex(5);
                   },
                   child: Padding(
                     padding: EdgeInsets.symmetric(vertical: 8),

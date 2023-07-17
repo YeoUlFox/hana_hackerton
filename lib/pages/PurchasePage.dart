@@ -27,7 +27,7 @@ class _PurchasePageState extends State<PurchasePage> {
             leading: IconButton(
               icon: Icon(Icons.arrow_back_ios),
               onPressed: () {
-                _routeProvider.setIndex(1);
+                _routeProvider.setIndex(6);
               },
             ),
             flexibleSpace: Container(
@@ -64,8 +64,7 @@ class _PurchasePageState extends State<PurchasePage> {
                     ),
                     onPressed: () {
                       // go to purchase complete page
-                      print("asdf");
-                      _routeProvider.setIndex(3);
+                      _routeProvider.setIndex(6);
                     },
                     child: Text(
                       '거래가 가능해요!',

@@ -17,7 +17,7 @@ class CategoryButton extends StatelessWidget {
         GestureDetector(
           onTap: () {
             // go to purchase
-            routeProvider.setIndex(0);
+            routeProvider.setIndex(1);
           },
           child: Container(
             width: 70,

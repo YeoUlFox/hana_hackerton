@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class RouteProvider extends ChangeNotifier {
-  int _currentIndex = 1;
+  int _currentIndex = 2;
 
   int get currentIndex => _currentIndex;
 

@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
             bodyText1: TextStyle(fontSize: 16),
             bodyText2: TextStyle(fontSize: 14),
           ),
-          colorScheme: myCustomColorScheme,
+          // colorScheme: myCustomColorScheme,
           useMaterial3: true,
         ),
         home: ChangeNotifierProvider(

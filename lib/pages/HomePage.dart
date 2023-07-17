@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hana_hackerton/components/AlarmItem.dart';
+import 'package:hana_hackerton/pages/BookShelfPage1.dart';
+import 'package:hana_hackerton/pages/BookShelfPage2.dart';
+import 'package:hana_hackerton/pages/CampaignPage1.dart';
+import 'package:hana_hackerton/pages/CampaignPage2.dart';
+import 'package:hana_hackerton/pages/RegisterCompletePage.dart';
+import 'package:hana_hackerton/pages/RegisterDetailPage.dart';
 import 'package:provider/provider.dart';
 import 'package:hana_hackerton/pages/PurchaseCompletePage.dart';
 import 'package:hana_hackerton/pages/PurchasePage.dart';
@@ -21,31 +27,50 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     _routeProvider = Provider.of<RouteProvider>(context);
 
+    const _pages = [
+      BookShelfPage1(),
+      SearchPage(),
+      MainPage(),
+      MainPage(),
+      MainPage(),
+      PurchasePage(),
+      PurchaseCompletePage(),
+      BookShelfPage2(),
+      RegisterDetailPage(),
+      RegisterCompletePage(),
+      CampaignPage1(),
+      CampaignPage2(),
+    ];
+
     return Scaffold(
       body: Consumer<RouteProvider>(
         builder: (context, routeProvider, _) {
           return IndexedStack(
             index: routeProvider.currentIndex,
-            children: const [
-              SearchPage(),
-              MainPage(),
-              PurchasePage(),
-              PurchaseCompletePage(),
-            ],
+            children: _pages,
           );
         },
       ),
       bottomNavigationBar: Consumer<RouteProvider>(
         builder: (context, routeProvider, _) {
           return BottomNavigationBar(
-            currentIndex: routeProvider.currentIndex >= 4
+            currentIndex: routeProvider.currentIndex >= _pages.length
                 ? routeProvider.currentIndex
-                : 1,
+                : 2,
             onTap: (index) {
               routeProvider.setIndex(index);
-              if (index == 1) _showAlarmsModal(context);
+              if (index == 3) _showAlarmsModal(context);
             },
+            showSelectedLabels: true,
+            showUnselectedLabels: true,
+            selectedItemColor: Colors.grey,
+            unselectedIconTheme: const IconThemeData(color: Colors.grey),
+            unselectedLabelStyle: const TextStyle(color: Colors.grey),
             items: const [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.book),
+                label: '내 서재',
+              ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.search),
                 label: '검색',
@@ -57,6 +82,10 @@ class _HomePageState extends State<HomePage> {
               BottomNavigationBarItem(
                 icon: Icon(Icons.notifications_active),
                 label: '알람',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.person),
+                label: '마이 페이지',
               ),
             ],
           );
@@ -79,7 +108,6 @@ class _HomePageState extends State<HomePage> {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       backgroundColor: Colors.white,
       builder: (context) {
-
         return Container(
           padding: const EdgeInsets.all(12.0),
           width: 360,

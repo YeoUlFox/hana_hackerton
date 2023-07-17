@@ -58,7 +58,7 @@ class _PurchaseCompletePageState extends State<PurchaseCompletePage> {
                     ),
                     onPressed: () {
                       // go to main page
-                      _routeProvider.setIndex(1);
+                      _routeProvider.setIndex(2);
                     },
                     child: Text(
                       '메인 페이지',
