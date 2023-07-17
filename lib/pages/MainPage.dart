@@ -101,28 +101,26 @@ class _MainPageState extends State<MainPage> {
             ),
           ),
 
-          //
-          Container(
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    CategoryButton(name: '철학'),
-                    CategoryButton(name: '종교'),
-                    CategoryButton(name: '사회'),
-                    CategoryButton(name: '기술')
-                  ],
-                ),
-                Row(
-                  children: [
-                    CategoryButton(name: '예술'),
-                    CategoryButton(name: '언어'),
-                    CategoryButton(name: '문학'),
-                    CategoryButton(name: '사회')
-                  ],
-                ),
-              ],
-            ),
+          // 카테고리 버튼들
+          const Column(
+            children: [
+              Row(
+                children: [
+                  CategoryButton(name: '철학'),
+                  CategoryButton(name: '종교'),
+                  CategoryButton(name: '사회'),
+                  CategoryButton(name: '기술')
+                ],
+              ),
+              Row(
+                children: [
+                  CategoryButton(name: '예술'),
+                  CategoryButton(name: '언어'),
+                  CategoryButton(name: '문학'),
+                  CategoryButton(name: '사회')
+                ],
+              ),
+            ],
           )
         ],
       ),

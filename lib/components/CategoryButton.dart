@@ -13,7 +13,6 @@ class CategoryButton extends StatelessWidget {
         GestureDetector(
           onTap: () {
             // TODO : Click event
-            print("asdf");
           },
           child: Container(
             width: 70,
