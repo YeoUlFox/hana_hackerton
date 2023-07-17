@@ -93,10 +93,12 @@ class _AlarmItemState extends State<AlarmItem> {
                 GestureDetector(
                   onTap: () {
                     if (widget.isSelling) {
+                      _showBookGetDialog(context, widget.bookname);
                       setState(() {
                         isVisiable = false;
                       });
                     } else {
+                      _showBookGetDialog(context, widget.bookname);
                       setState(() {
                         isVisiable = false;
                       });
@@ -110,5 +112,60 @@ class _AlarmItemState extends State<AlarmItem> {
               ],
             ))
         : const SizedBox();
+  }
+
+  _showBookGetDialog(BuildContext context, String bookname) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+            content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              children: [
+                Container(
+                  margin: const EdgeInsets.only(right: 20.0),
+                  child: Image.asset("alarm/book_get.png"),
+                ),
+                RichText(
+                  textAlign: TextAlign.center,
+                  text: TextSpan(
+                    style: DefaultTextStyle.of(context).style, // 기본 텍스트 스타일
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: widget.bookname,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.deepPurpleAccent, // 원하는 색상 지정
+                        ),
+                      ),
+                      const TextSpan(
+                        text: '이\n 내 콘텐츠에\n 추가되었어요!',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+            Container(
+                margin: const EdgeInsets.only(top: 12.0),
+                child: Center(
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(primary: const Color(0xFF63E6BE)),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+
+                    },
+                    child: const Text('알겠어요.', style: TextStyle(color: Colors.white)),
+                  ),
+                ))
+          ],
+        ));
+      },
+    );
   }
 }
