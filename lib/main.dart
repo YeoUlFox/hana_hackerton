@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       onSurface: Color(0xFF212529),       // N4
       onBackground: Color(0xFF212529),    // N3
       onError: Color(0xFFFFFFFF),         // WHITE
-      outline: Color(0xFF7B61FF),         // highlight
+      outline: Color(0xFF63E6BE),         // highlight
       brightness: Brightness.light, // 밝은 테마
     );
 
