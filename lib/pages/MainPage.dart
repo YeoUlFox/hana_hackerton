@@ -26,6 +26,29 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     _routeProvider = Provider.of<RouteProvider>(context);
 
+    Widget sellingBooks;
+
+    if (_routeProvider.sellingStep == 0) {
+      sellingBooks = Row(
+        children: [
+          Book(bookPath: "/books/book3.png", price: "21,000원"),
+          Book(bookPath: "/books/book2.png", price: "21,000원"),
+        ],
+      );
+    } else if (_routeProvider.sellingStep == 1) {
+      sellingBooks = Row(children: [
+        Book(bookPath: "/books/book3.png", price: "21,000원"),
+        Book(bookPath: "/books/book2.png", price: "21,000원"),
+        Book(bookPath: "/books/book4.png", price: "4,000원"),
+      ]);
+    } else {
+      sellingBooks = Row(
+        children: [
+          Book(bookPath: "/books/book3.png", price: "21,000원"),
+          Book(bookPath: "/books/book2.png", price: "21,000원"),
+        ],
+      );
+    }
     return Scaffold(
         body: Container(
       margin: const EdgeInsets.all(20.0),
@@ -49,10 +72,10 @@ class _MainPageState extends State<MainPage> {
                         TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                 Expanded(child: Text("")),
                 Chip(
-                  backgroundColor: Color(0x22C3FAE8),
-                  label: Text('400 P',
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                  backgroundColor: const Color(0x22C3FAE8),
+                  label: Text('${_routeProvider.userPoint.toString()} P',
+                      style: const TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.bold)),
                 ),
               ],
             ),
@@ -83,33 +106,16 @@ class _MainPageState extends State<MainPage> {
             height: 200,
             width: double.infinity,
             child: Card(
-              elevation: 2,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(8),
+                elevation: 2,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(8),
+                  ),
                 ),
-              ),
-              child: Padding(
+                child: Padding(
                   padding: const EdgeInsets.all(12.0),
-                  child: isLoading
-                      ? const Row(
-                          children: [
-                            Book(
-                                bookPath: "/books/book1.png", price: "30,000원"),
-                            Book(
-                                bookPath: "/books/book2.png", price: "30,000원"),
-                            Book(bookPath: "/books/book3.png", price: "30,000원")
-                          ],
-                        )
-                      : const Row(
-                          children: [
-                            Book(
-                                bookPath: "/books/book1.png", price: "30,000원"),
-                            Book(
-                                bookPath: "/books/book2.png", price: "30,000원"),
-                          ],
-                        )),
-            ),
+                  child: sellingBooks,
+                )),
           ),
 
           // 카테고리 버튼들

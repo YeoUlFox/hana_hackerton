@@ -11,6 +11,7 @@ class BookShelfPage2 extends StatefulWidget {
 
 class _BookShelfPage2State extends State<BookShelfPage2> {
   late RouteProvider _routeProvider;
+  var _isChecked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -95,13 +96,117 @@ class _BookShelfPage2State extends State<BookShelfPage2> {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.fromLTRB(0, 10, 0, 25),
+                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
                   child: Image.asset(
-                    '/bookshelf2.png',
+                    'books/books1.png',
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.fromLTRB(50, 0, 50, 0),
+                  width: double.infinity,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Checkbox(
+                        value: false,
+                        onChanged: (value) {
+                          setState(() {
+                          });
+                        },
+                      ),
+                      Checkbox(
+                        value: false,
+                        onChanged: (value) {
+                          setState(() {
+                          });
+                        },
+                      ),
+                      Checkbox(
+                        value: false,
+                        onChanged: (value) {
+                          setState(() {
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  child: Image.asset(
+                    'books/books2.png',
+                  ),
+                ),
+                Container(
+                  width: double.infinity,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Checkbox(
+                        value: _isChecked,
+                        onChanged: (value) {
+                          setState(() {
+                            _isChecked = !_isChecked;
+                          });
+                        },
+                      ),
+                      Checkbox(
+                        value: false,
+                        onChanged: (value) {
+                          setState(() {
+                          });
+                        },
+                      ),
+                      Checkbox(
+                        value: false,
+                        onChanged: (value) {
+                          setState(() {
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  child: Image.asset(
+                    'books/books3.png',
+                  ),
+                ),
+                Container(
+                  width: double.infinity,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Checkbox(
+                        value: false,
+                        onChanged: (value) {
+                          setState(() {
+                          });
+                        },
+                      ),
+                      Checkbox(
+                        value: false,
+                        onChanged: (value) {
+                          setState(() {
+                          });
+                        },
+                      ),
+                      Checkbox(
+                        value: false,
+                        onChanged: (value) {
+                          setState(() {
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.fromLTRB(0, 30, 0, 10),
+                  child: Image.asset(
+                    'books/banner.png',
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.fromLTRB(50, 20, 50, 50),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(

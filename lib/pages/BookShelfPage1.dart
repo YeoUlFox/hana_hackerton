@@ -64,7 +64,7 @@ class _BookShelfPage1State extends State<BookShelfPage1> {
                           ),
                         ),
                         child: Text(
-                          '구매',
+                          '보유',
                           style: TextStyle(
                               color: Color(0xff39393A),
                               fontWeight: FontWeight.bold),

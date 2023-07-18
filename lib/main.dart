@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hana_hackerton/pages/LaunchPage.dart';
 import 'package:provider/provider.dart';
 import 'package:hana_hackerton/pages/HomePage.dart';
 import 'package:hana_hackerton/provider/RouteProvider.dart';
@@ -42,31 +43,32 @@ class MyApp extends StatelessWidget {
       brightness: Brightness.light, // 밝은 테마
     );
 
-    return MaterialApp(
-        title: 'Hana Reborn',
-        theme: ThemeData(
-          textTheme: const TextTheme(
-            headline1: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
-            // h1
-            headline2: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
-            // h2
-            headline3: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            // h3
-            headline4: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            // h4
-            headline5: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-            // h5
-            bodyText1: TextStyle(fontSize: 16),
-            bodyText2: TextStyle(fontSize: 14),
-          ),
-          // colorScheme: myCustomColorScheme,
-          useMaterial3: true,
-        ),
-        home: ChangeNotifierProvider(
-          create: (context) {
-            return RouteProvider();
-          },
-          child: const HomePage(),
-        ));
+    return ChangeNotifierProvider(
+        create: (context) => RouteProvider(),
+        child: MaterialApp(
+            title: 'Hana Reborn',
+            theme: ThemeData(
+              textTheme: const TextTheme(
+                headline1: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
+                // h1
+                headline2: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
+                // h2
+                headline3: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                // h3
+                headline4: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                // h4
+                headline5: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                // h5
+                bodyText1: TextStyle(fontSize: 16),
+                bodyText2: TextStyle(fontSize: 14),
+              ),
+              // colorScheme: myCustomColorScheme,
+              useMaterial3: true,
+            ),
+            initialRoute: '/',
+            routes: {
+              '/': (contenxt) => LaunchPage(),
+              '/home': (contenxt) => HomePage(),
+            }));
   }
 }

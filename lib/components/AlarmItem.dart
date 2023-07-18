@@ -47,7 +47,7 @@ class _AlarmItemState extends State<AlarmItem> {
                                   .style, // 기본 텍스트 스타일
                               children: <TextSpan>[
                                 const TextSpan(
-                                  text: '반납 하신 ',
+                                  text: '구매 하신 ',
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -82,7 +82,7 @@ class _AlarmItemState extends State<AlarmItem> {
                                   ),
                                 ),
                                 const TextSpan(
-                                  text: '\n책이 판매되었어요!',
+                                  text: '가 도착했어요!',
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                   ),

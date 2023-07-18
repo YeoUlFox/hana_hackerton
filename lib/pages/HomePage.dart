@@ -63,10 +63,14 @@ class _HomePageState extends State<HomePage> {
             },
             showSelectedLabels: true,
             showUnselectedLabels: true,
-            selectedItemColor: Colors.grey,
-            unselectedIconTheme: const IconThemeData(color: Colors.grey),
-            unselectedLabelStyle: const TextStyle(color: Colors.grey),
-            items: const [
+            unselectedFontSize: 12,
+
+            selectedItemColor: Colors.black54,
+            unselectedItemColor: Colors.black54,
+
+            unselectedIconTheme: const IconThemeData(color: Colors.black54),
+            unselectedLabelStyle: const TextStyle(color: Colors.black54),
+            items: [
               BottomNavigationBarItem(
                 icon: Icon(Icons.book),
                 label: '내 서재',
@@ -116,9 +120,9 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              AlarmItem(bookname: "ICT 융합 기술", isSelling: false),
-              AlarmItem(bookname: "과학 기술, 미래 국방과 만...", isSelling: true),
-              AlarmItem(bookname: "그림으로 이해하는 네트워크", isSelling: true),
+              AlarmItem(bookname: "그림으로 이해하는 ..", isSelling: false),
+              AlarmItem(bookname: "그림으로 이해하는 네트워크..\n", isSelling: true),
+              AlarmItem(bookname: "3600포인트", isSelling: true),
             ],
           ),
         );
