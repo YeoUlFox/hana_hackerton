@@ -96,12 +96,12 @@ class _AlarmItemState extends State<AlarmItem> {
                       setState(() {
                         isVisiable = false;
                       });
-                      _showGetSellingDialog(context, widget.bookname, 12000, 3000);
+                      _showGetSellingDialog(context, widget.bookname, 21000, 3000);
                     } else {
                       setState(() {
                         isVisiable = false;
                       });
-                      _showBookGetDialog(context, widget.bookname);
+                      _showBookGetDialog(context, widget.bookname, 1200);
                     }
                   },
                   child: const Image(
@@ -114,7 +114,7 @@ class _AlarmItemState extends State<AlarmItem> {
         : const SizedBox();
   }
 
-  _showBookGetDialog(BuildContext context, String bookname) {
+  _showBookGetDialog(BuildContext context, String bookname, int point) {
     showDialog(
       context: context,
       builder: (context) {
@@ -158,7 +158,7 @@ class _AlarmItemState extends State<AlarmItem> {
                     style: ElevatedButton.styleFrom(primary: const Color(0xFF63E6BE)),
                     onPressed: () {
                       Navigator.of(context).pop();
-                      _showPromoteDialog(context, 1200);
+                      _showPromoteDialog(context, point);
                     },
                     child: const Text('알겠어요.', style: TextStyle(color: Colors.white)),
                   ),
@@ -229,9 +229,6 @@ class _AlarmItemState extends State<AlarmItem> {
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(primary: const Color(0xFF63E6BE)),
                         onPressed: () {
-                          final routeProvider = Provider.of<RouteProvider>(context, listen: false);
-                          routeProvider.increasePoint(point);
-
                           Navigator.of(context).pop();
                         },
                         child: const Text('알겠어요.', style: TextStyle(color: Colors.white)),
@@ -258,13 +255,13 @@ class _AlarmItemState extends State<AlarmItem> {
                     children: <TextSpan>[
                       TextSpan(
                         text: bookname,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: Colors.deepPurpleAccent,
                         ),
                       ),
-                      TextSpan(
+                      const TextSpan(
                         text: '\n판매로 얻은 포인트에요',
                         style: TextStyle(
                           fontSize: 18,
@@ -291,7 +288,7 @@ class _AlarmItemState extends State<AlarmItem> {
                   text: TextSpan(
                     style: DefaultTextStyle.of(context).style, // 기본 텍스트 스타일
                     children: <TextSpan>[
-                      TextSpan(
+                      const TextSpan(
                         text: "이 거래로",
                         style: TextStyle(
                           fontSize: 18,
@@ -300,13 +297,13 @@ class _AlarmItemState extends State<AlarmItem> {
                       ),
                       TextSpan(
                         text: '${recellPoint}원',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: Colors.deepPurpleAccent, // 원하는 색상 지정
                         ),
                       ),
-                      TextSpan(
+                      const TextSpan(
                         text: "의 금액이\n 저작권자에게 돌아갔어요!",
                         style: TextStyle(
                           fontSize: 18,
@@ -327,9 +324,6 @@ class _AlarmItemState extends State<AlarmItem> {
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(primary: const Color(0xFF63E6BE)),
                         onPressed: () {
-                          final routeProvider = Provider.of<RouteProvider>(context, listen: false);
-                          routeProvider.increasePoint(point);
-
                           Navigator.of(context).pop();
                         },
                         child: const Text('알겠어요.', style: TextStyle(color: Colors.white)),

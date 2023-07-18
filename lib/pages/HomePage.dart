@@ -59,14 +59,24 @@ class _HomePageState extends State<HomePage> {
                 : 2,
             onTap: (index) {
               routeProvider.setIndex(index);
-              if (index == 3) _showAlarmsModal(context);
+              if (index == 3) {
+                _showAlarmsModal(context);
+
+                Future.delayed(const Duration(seconds: 1), () {
+                  routeProvider.increaseSellingStep();
+                  routeProvider.increasePoint(25200);
+                });
+              };
             },
             showSelectedLabels: true,
             showUnselectedLabels: true,
             selectedItemColor: Colors.grey,
+            unselectedFontSize: 12,
+            unselectedItemColor: Colors.grey,
+
             unselectedIconTheme: const IconThemeData(color: Colors.grey),
             unselectedLabelStyle: const TextStyle(color: Colors.grey),
-            items: const [
+            items: [
               BottomNavigationBarItem(
                 icon: Icon(Icons.book),
                 label: '내 서재',
@@ -80,7 +90,8 @@ class _HomePageState extends State<HomePage> {
                 label: '홈',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.notifications_active),
+                backgroundColor: Colors.red,
+                icon: Icon(routeProvider.sellingStep == 0? Icons.notifications_active: Icons.notifications_none),
                 label: '알람',
               ),
               BottomNavigationBarItem(
@@ -117,8 +128,8 @@ class _HomePageState extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               AlarmItem(bookname: "ICT 융합 기술", isSelling: false),
-              AlarmItem(bookname: "과학 기술, 미래 국방과 만...", isSelling: true),
-              AlarmItem(bookname: "그림으로 이해하는 네트워크", isSelling: true),
+              AlarmItem(bookname: "7일 안에 끝내는 금융 지식", isSelling: true),
+              AlarmItem(bookname: "열혈, 자료구조", isSelling: true),
             ],
           ),
         );
