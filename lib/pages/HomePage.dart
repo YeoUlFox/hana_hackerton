@@ -59,7 +59,14 @@ class _HomePageState extends State<HomePage> {
                 : 2,
             onTap: (index) {
               routeProvider.setIndex(index);
-              if (index == 3) _showAlarmsModal(context);
+              if (index == 3) {
+                _showAlarmsModal(context);
+
+                Future.delayed(const Duration(seconds: 1), () {
+                  routeProvider.increaseSellingStep();
+                  routeProvider.increasePoint(25200);
+                });
+              };
             },
             showSelectedLabels: true,
             showUnselectedLabels: true,
@@ -84,7 +91,8 @@ class _HomePageState extends State<HomePage> {
                 label: '홈',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.notifications_active),
+                backgroundColor: Colors.red,
+                icon: Icon(routeProvider.sellingStep == 0? Icons.notifications_active: Icons.notifications_none),
                 label: '알람',
               ),
               BottomNavigationBarItem(
@@ -123,6 +131,7 @@ class _HomePageState extends State<HomePage> {
               AlarmItem(bookname: "그림으로 이해하는 ..", isSelling: false),
               AlarmItem(bookname: "그림으로 이해하는 네트워크..\n", isSelling: true),
               AlarmItem(bookname: "3600포인트", isSelling: true),
+
             ],
           ),
         );

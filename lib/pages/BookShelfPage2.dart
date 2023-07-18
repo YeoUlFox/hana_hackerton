@@ -216,6 +216,7 @@ class _BookShelfPage2State extends State<BookShelfPage2> {
                       backgroundColor: Color(0xffDD5F88),
                     ),
                     onPressed: () {
+                      _routeProvider.increaseSellingStep();
                       _routeProvider.setIndex(8);
                     },
                     child: Text(

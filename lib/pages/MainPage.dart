@@ -12,15 +12,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  bool isLoading = false;
-
   late RouteProvider _routeProvider;
-
-  void loadingBooks() {
-    setState(() {
-      isLoading = true;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,12 +57,12 @@ class _MainPageState extends State<MainPage> {
           // 포인트 및 아이디 표시 헤더
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 16.0),
-            child: const Row(
+            child: Row(
               children: [
-                Text("별돌이",
+                const Text("추호성님",
                     style:
-                        TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                Expanded(child: Text("")),
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                const Expanded(child: Text("")),
                 Chip(
                   backgroundColor: const Color(0x22C3FAE8),
                   label: Text('${_routeProvider.userPoint.toString()} P',
