@@ -12,19 +12,33 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  bool isLoading = false;
-
   late RouteProvider _routeProvider;
-
-  void loadingBooks() {
-    setState(() {
-      isLoading = true;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     _routeProvider = Provider.of<RouteProvider>(context);
+
+    Widget sellingBooks;
+
+    if(_routeProvider.sellingStep == 0) {
+      sellingBooks = Row(
+          children: [
+            Book(
+                bookPath: "/books/book3.png", price: "21,000원"),
+            Book(
+                bookPath: "/books/book2.png", price: "21,000원"),
+          ],);
+    } else if(_routeProvider.sellingStep == 1) {
+      sellingBooks = Center(
+        child: Text('판매 중인 도서가 없습니다'),
+      );
+    } else {
+      sellingBooks = Row(
+        children: [
+          Book(bookPath: "/books/book4.png", price: "4,000원"),
+        ],
+      );
+    }
 
     return Scaffold(
         body: Container(
@@ -42,17 +56,17 @@ class _MainPageState extends State<MainPage> {
           // 포인트 및 아이디 표시 헤더
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 16.0),
-            child: const Row(
+            child: Row(
               children: [
-                Text("별돌이",
+                const Text("추호성님",
                     style:
-                        TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                Expanded(child: Text("")),
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                const Expanded(child: Text("")),
                 Chip(
-                  backgroundColor: Color(0x22C3FAE8),
-                  label: Text('400 P',
+                  backgroundColor: const Color(0x22C3FAE8),
+                  label: Text('${_routeProvider.userPoint.toString()} P',
                       style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                          const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                 ),
               ],
             ),
@@ -91,24 +105,8 @@ class _MainPageState extends State<MainPage> {
               ),
               child: Padding(
                   padding: const EdgeInsets.all(12.0),
-                  child: isLoading
-                      ? const Row(
-                          children: [
-                            Book(
-                                bookPath: "/books/book1.png", price: "30,000원"),
-                            Book(
-                                bookPath: "/books/book2.png", price: "30,000원"),
-                            Book(bookPath: "/books/book3.png", price: "30,000원")
-                          ],
-                        )
-                      : const Row(
-                          children: [
-                            Book(
-                                bookPath: "/books/book1.png", price: "30,000원"),
-                            Book(
-                                bookPath: "/books/book2.png", price: "30,000원"),
-                          ],
-                        )),
+                  child: sellingBooks,
+              )
             ),
           ),
 
